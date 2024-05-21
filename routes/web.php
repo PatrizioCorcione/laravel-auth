@@ -37,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('project', ProjectController::class);
+
+Route::middleware(['auth', 'verified'])
+    ->group(function () {
+        // inserire tutte le root protette da author
+        Route::resource('project', ProjectController::class);
+    });
 
 require __DIR__ . '/auth.php';
