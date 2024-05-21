@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link " href="{{ url('profile') }}">{{ Auth::user()->name }}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{ route('project.index') }}">Progetti</a>
+        </li>
       </ul>
     </div>
   </div>
