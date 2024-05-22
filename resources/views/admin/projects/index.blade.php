@@ -3,9 +3,24 @@
   <div class="container my-5">
     @if (session('success'))
       <div class="alert alert-success" role="alert">
-        Progetto modificato!
+        {{ session('success') }}
       </div>
     @endif
+    @if ($errors->any())
+      <div class="alert alert-danger " role='alert'>
+        <ul>
+          @foreach ($errors->all() as $item)
+            <li>{{ $item }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+    <form action="{{ route('admin.project.store') }}" method="POST">
+      @csrf
+      <input type="text" name="title" id="">
+      <input type="text" name="description" id="">
+      <button type="submit">Invia</button>
+    </form>
     <table class="table">
       <thead>
         <tr>

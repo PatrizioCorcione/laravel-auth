@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Functions\Helper;
 
 class ProjectController extends Controller
 {
@@ -29,6 +30,28 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $valData = $request->validate(
+            [
+                'title' => 'required|min:2|max:20',
+                'description' => 'required|min:2|max:200'
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio.',
+                'title.min' => 'Il titolo deve contenere almeno :min caratteri.',
+                'title.max' => 'Il titolo non può superare i :max caratteri.',
+                'description.required' => 'La descrizione è obbligatoria.',
+                'description.min' => 'La descrizione deve contenere almeno :min caratteri.',
+                'description.max' => 'La descrizione non può superare i :max caratteri.',
+            ]
+        );
+        $project_data = $request->all();
+        $new_project = new Project();
+        $new_project->title = $project_data['title'];
+        $new_project->description = $project_data['description'];
+        $new_project->slug = Helper::makeSlug($new_project['title'], new Project());
+        $new_project->save();
+
+        return redirect()->route('admin.project.index', $new_project);
     }
 
     /**
@@ -65,6 +88,11 @@ class ProjectController extends Controller
                 'description.max' => 'La descrizione non può superare i :max caratteri.',
             ]
         );
+        if ($valData['title'] === $project->title) {
+            $valData['slug'] = $project->slug;
+        } else {
+            $valData['slug'] = Helper::makeSlug($valData['title'], new Project());
+        }
         $project->update($valData);
         return redirect()->route('admin.project.index')->with('success', 'Progetto aggiornato con successo.');
     }
