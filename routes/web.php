@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])
             'create', 'show', 'edit'
         ]);
         Route::resource('types', TypeController::class)->except([
-            'create', 'show', 'edit'
+            'create', 'show', 'edit', 'index'
         ]);
     });
 
