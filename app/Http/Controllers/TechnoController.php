@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Technology;
-use App\Models\types;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Functions\Helper;
 
@@ -15,7 +15,7 @@ class TechnoController extends Controller
     public function index()
     {
         $techno = Technology::all();
-        $type = types::all();
+        $type = Type::all();
         return view('admin.technologies.index', compact('techno', 'type'));
     }
 
@@ -69,8 +69,9 @@ class TechnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Technology $techno)
+    public function update(Request $request, Technology $technology)
     {
+
         $valData = $request->validate(
             [
                 'technologies' => 'required|min:2|max:20',
@@ -81,20 +82,26 @@ class TechnoController extends Controller
                 'technologies.max' => 'Il nome non può superare i :max caratteri.',
             ]
         );
-        if ($valData['technologies'] === $techno->technologies) {
-            $valData['slug'] = $techno->slug;
+
+        if ($valData['technologies'] === $technology->technologies) {
+            $valData['slug'] = $technology->slug;
         } else {
             $valData['slug'] = Helper::makeSlug($valData['technologies'], new Technology());
         }
-        $techno->update($valData);
-        return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia aggiornato con successo.');
+
+        $technology->update($valData);
+
+
+        return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia aggiornata con successo.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->route('admin.technologies.index')->with('deleted', 'Il tecnologia ' . $technology->technology . ' e stato eliminata');
     }
 }
