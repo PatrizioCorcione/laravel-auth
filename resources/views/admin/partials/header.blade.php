@@ -1,12 +1,22 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-dark  ">
   <div class="container-fluid">
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse d-flex justify-content-between " id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link " href="{{ route('logout') }}"
+          <a class="nav-link  text-white" target="_blanck" href="{{ route('admin.home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  text-white" href="{{ route('dashboard') }}">Dashboard</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ">
+
+        <li class="nav-item">
+          <a class="nav-link  text-white" href="{{ route('logout') }}"
             onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                                 document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
           </a>
 
@@ -15,16 +25,7 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" target="_blanck" href="{{ route('home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ url('profile') }}">{{ Auth::user()->name }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('project.index') }}">Progetti</a>
+          <a class="nav-link  text-white" href="{{ url('profile') }}">{{ Auth::user()->name }}</a>
         </li>
       </ul>
     </div>

@@ -46,7 +46,7 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" target="_blanck" href="{{ url('/') }}">{{ __('Home') }}</a>
+              <a class="nav-link" target="_blanck" href="{{ route('admin.project.index') }}">{{ __('Home') }}</a>
             </li>
           </ul>
 

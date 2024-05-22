@@ -13,7 +13,7 @@ class ProjectController extends Controller
     public function index()
     {
         $project = Project::all();
-        return view('admin.index', compact('project'));
+        return view('admin.projects.index', compact('project'));
     }
 
     /**
@@ -29,7 +29,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -43,19 +42,32 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $valData = $request->validate(
+            [
+                'title' => 'required|min:2|max:20',
+                'description' => 'required|min:2|max:200'
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio.',
+                'title.min' => 'Il titolo deve contenere almeno :min caratteri.',
+                'title.max' => 'Il titolo non può superare i :max caratteri.',
+                'description.required' => 'La descrizione è obbligatoria.',
+                'description.min' => 'La descrizione deve contenere almeno :min caratteri.',
+                'description.max' => 'La descrizione non può superare i :max caratteri.',
+            ]
+        );
+        $project->update($valData);
+        return redirect()->route('admin.project.index')->with('success', 'Progetto aggiornato con successo.');
     }
-
     /**
      * Remove the specified resource from storage.
      */

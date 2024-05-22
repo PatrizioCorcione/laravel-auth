@@ -1,0 +1,13 @@
+nav{
+    height: 50px;
+}
+.aside{
+    width: 200px;
+    height: calc(100vh - 50px) !important;
+}
+.table{
+    input{
+        border: none;
+        cursor: pointer;
+    }
+}
