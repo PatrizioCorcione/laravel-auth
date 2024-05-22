@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('content')
   <div class="container my-5">
+
     @if (session('success'))
       <div class="alert alert-success" role="alert">
         {{ session('success') }}
       </div>
     @endif
+
     @if ($errors->any())
       <div class="alert alert-danger " role='alert'>
         <ul>
@@ -15,6 +17,13 @@
         </ul>
       </div>
     @endif
+
+    @if (session('deleted'))
+      <div class="alert alert-primary" role='alert'>
+        {{ session('deleted') }}
+      </div>
+    @endif
+
     <form action="{{ route('admin.project.store') }}" method="POST">
       @csrf
       <input type="text" name="title" id="">
@@ -47,9 +56,12 @@
               <button class="btn btn-warning " onclick="submitForm('form-edit-{{ $item->id }}')">
                 <i class="fa-solid fa-pen-nib text-black "></i></a>
               </button>
-              <button class="btn btn-danger ">
-                {{-- <a href="{{ route('admin.project.destroy') }}" --}}><i class="fa-solid fa-delete-left text-black "></i></a>
-              </button>
+              <form class="d-inline-block" action="{{ route('admin.project.destroy', $item->id) }}" method="POST"
+                onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto ?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger  index-btn"><i class="fa-solid fa-circle-xmark"></i></button>
+              </form>
             </td>
           </tr>
         @empty

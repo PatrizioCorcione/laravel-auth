@@ -25,7 +25,9 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         // inserire tutte le root protette da author
         Route::get('/', [DashboardController::class, 'index'])->name('home');
-        Route::resource('project', ProjectController::class);
+        Route::resource('project', ProjectController::class)->except([
+            'create', 'show', 'edit'
+        ]);
     });
 
 Route::get('/dashboard', function () {
