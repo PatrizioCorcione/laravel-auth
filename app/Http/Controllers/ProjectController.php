@@ -44,10 +44,10 @@ class ProjectController extends Controller
                 'description.max' => 'La descrizione non può superare i :max caratteri.',
             ]
         );
-        $project_data = $request->all();
+
         $new_project = new Project();
-        $new_project->title = $project_data['title'];
-        $new_project->description = $project_data['description'];
+        $new_project->title = $valData['title'];
+        $new_project->description = $valData['description'];
         $new_project->slug = Helper::makeSlug($new_project['title'], new Project());
         $new_project->save();
 

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TechnoController;
+use App\Http\Controllers\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,12 @@ Route::middleware(['auth', 'verified'])
         // inserire tutte le root protette da author
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('project', ProjectController::class)->except([
+            'create', 'show', 'edit'
+        ]);
+        Route::resource('technologies', TechnoController::class)->except([
+            'create', 'show', 'edit'
+        ]);
+        Route::resource('types', TypeController::class)->except([
             'create', 'show', 'edit'
         ]);
     });
