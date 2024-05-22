@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark  ">
   <div class="container-fluid">
 
-    <div class="collapse navbar-collapse d-flex justify-content-between " id="navbarNavDropdown">
+    <div class="collapse navbar-collapse d-flex flex-md-row-reverse " id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link  text-white" target="_blanck" href="{{ route('admin.home') }}">Home</a>
@@ -9,10 +9,6 @@
         <li class="nav-item">
           <a class="nav-link  text-white" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
-
-      </ul>
-      <ul class="navbar-nav ">
-
         <li class="nav-item">
           <a class="nav-link  text-white" href="{{ route('logout') }}"
             onclick="event.preventDefault();

@@ -26,10 +26,10 @@
       <div class="col-6">
 
 
-        <form action="{{ route('admin.technologies.store') }}" method="POST">
+        <form class="d-flex" action="{{ route('admin.technologies.store') }}" method="POST">
           @csrf
-          <input type="text" name="technologies" id="">
-          <button class="btn btn-outline-primary " type="submit">Invia</button>
+          <input placeholder="Tecnologia" type="text" name="technologies" id="">
+          <button class="btn btn-outline-primary mx-3" type="submit">Invia</button>
         </form>
         <table class="table">
           <thead>
@@ -47,7 +47,7 @@
                   @method('PUT')
 
                   <td>
-                    <input type="text" value="{{ $item->technologies }}" name="technologies">
+                    <input placeholder="Tecnologia" type="text" value="{{ $item->technologies }}" name="technologies">
                   </td>
                 </form>
                 <td>
@@ -78,10 +78,10 @@
       </script>
       <div class="col-6">
 
-        <form action="{{ route('admin.types.store') }}" method="POST">
+        <form class="d-flex" action="{{ route('admin.types.store') }}" method="POST">
           @csrf
-          <input type="text" name="type" id="">
-          <button class="btn btn-outline-primary " type="submit">Invia</button>
+          <input placeholder="Tipo" type="text" name="type" id="">
+          <button class="btn btn-outline-primary mx-3" type="submit">Invia</button>
         </form>
         <table class="table">
           <thead>
@@ -99,7 +99,7 @@
                   @method('PUT')
 
                   <td>
-                    <input type="text" value="{{ $item->type }}" name="type">
+                    <input placeholder="Tipo" type="text" value="{{ $item->type }}" name="type">
                   </td>
                 </form>
                 <td>

@@ -19,11 +19,13 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
+<body class="font-sans text-gray-900 vh-100 overflow-hidden">
   @include('admin.partials.header')
-  <div class="d-flex">
+  <div class="d-flex h-100 ">
     @include('admin.partials.aside')
-    @yield('content')
+    <div class="overflow-y-auto  w-100 ">
+      @yield('content')
+    </div>
   </div>
 </body>
 

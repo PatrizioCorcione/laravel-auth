@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-  <div class="container my-5">
+  <div class="container my-3">
 
     @if (session('success'))
       <div class="alert alert-success" role="alert">
@@ -24,11 +24,11 @@
       </div>
     @endif
 
-    <form action="{{ route('admin.project.store') }}" method="POST">
+    <form class="d-flex " action="{{ route('admin.project.store') }}" method="POST">
       @csrf
-      <input type="text" name="title" id="">
-      <input type="text" name="description" id="">
-      <button type="submit">Invia</button>
+      <input placeholder="Titolo" type="text" name="title" id="">
+      <input placeholder="Descrizione" class="mx-3 " type="text" name="description" id="">
+      <button class="btn btn-outline-primary " type="submit">Invia</button>
     </form>
     <table class="table">
       <thead>
